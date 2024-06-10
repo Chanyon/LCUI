@@ -1,0 +1,17 @@
+.{
+    .name = "worker",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .libyutil = .{
+            .path = "../yutil",
+            .lazy = false,
+        },
+        .libthread = .{
+            .path = "../thread",
+        },
+    },
+    .paths = .{
+        "",
+    },
+}

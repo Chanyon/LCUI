@@ -1,0 +1,16 @@
+.{
+    .name = "timer",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .libthread = .{
+            .path = "../thread",
+        },
+        .libyutil = .{
+            .path = "../yutil",
+        },
+    },
+    .paths = .{
+        "",
+    },
+}

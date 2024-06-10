@@ -1,0 +1,21 @@
+.{
+    .name = "pandagl",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .libpng = .{
+            .url = "https://github.com/mitchellh/zig-build-libpng/archive/6cb6e26da19c0bdb06aeb89aa46a2e14091b854c.tar.gz",
+            .hash = "1220d0134e1e0887e4697322ea31bbf84fc4583917ac048b49c6ebf8505e2c916a91",
+        },
+        .libyutil = .{
+            .path = "../yutil",
+        },
+        .libjpeg = .{
+            .url = "https://github.com/libjpeg-turbo/libjpeg-turbo/archive/3c17063ef1ab43f5877f19d670dc39497c5cd036.tar.gz",
+            .hash = "1220d1863c7ec60f73597f6866ac8121ca86311ff5582b92fa1533ac2222bf3ae696",
+        },
+    },
+    .paths = .{
+        "",
+    },
+}

@@ -1,0 +1,25 @@
+.{
+    .name = "ui-cursor",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .libyutil = .{
+            .path = "../yutil",
+        },
+        .libcss = .{
+            .path = "../css",
+        },
+        .libui = .{
+            .path = "../ui",
+        },
+        .libpandagl = .{
+            .path = "../pandagl",
+        },
+        .libplatform = .{
+            .path = "../platform",
+        },
+    },
+    .paths = .{
+        "",
+    },
+}

@@ -1,0 +1,11 @@
+.{
+    .name = "thread",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .libyutil = .{
+            .path = "../yutil",
+        },
+    },
+    .paths = .{""},
+}

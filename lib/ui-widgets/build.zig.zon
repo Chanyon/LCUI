@@ -1,0 +1,37 @@
+.{
+    .name = "ui-widgets",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .libyutil = .{
+            .path = "../yutil",
+        },
+        .libui = .{
+            .path = "../ui",
+        },
+        .libuixml = .{
+            .path = "../ui-xml",
+        },
+        .libworker = .{
+            .path = "../worker",
+        },
+        .libtimer = .{
+            .path = "../timer",
+        },
+        .libthread = .{
+            .path = "../thread",
+        },
+        .libplatform = .{
+            .path = "../platform",
+        },
+        .libpandagl = .{
+            .path = "../pandagl",
+        },
+        .libcss = .{
+            .path = "../css",
+        },
+    },
+    .paths = .{
+        "",
+    },
+}

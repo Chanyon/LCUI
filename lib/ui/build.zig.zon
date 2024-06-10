@@ -1,0 +1,22 @@
+.{
+    .name = "ui",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .libpandagl = .{
+            .path = "../pandagl",
+        },
+        .libyutil = .{
+            .path = "../yutil",
+        },
+        .libcss = .{
+            .path = "../css",
+        },
+        .libthread = .{
+            .path = "../thread",
+        },
+    },
+    .paths = .{
+        "",
+    },
+}

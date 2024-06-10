@@ -1,0 +1,26 @@
+.{
+    .name = "ui-xml",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .libxml2 = .{
+            .url = "https://github.com/doccaico/libxml2-zig-windows/archive/dcc7d06e9002468f75961d985ffb9524327417bf.tar.gz",
+            .hash = "1220a6fb809f68f43c8b1ab91e695fe2a85febf6ff1ee9fd93a9f5807cac31236991",
+        },
+        .libpandagl = .{
+            .path = "../pandagl",
+        },
+        .libyutil = .{
+            .path = "../yutil",
+        },
+        .libcss = .{
+            .path = "../css",
+        },
+        .libui = .{
+            .path = "../ui",
+        },
+    },
+    .paths = .{
+        "",
+    },
+}

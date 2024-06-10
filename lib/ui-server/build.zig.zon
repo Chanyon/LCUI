@@ -1,0 +1,28 @@
+.{
+    .name = "ui-server",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .libyutil = .{
+            .path = "../yutil",
+        },
+        .libui = .{
+            .path = "../ui",
+        },
+        .libplatform = .{
+            .path = "../platform",
+        },
+        .libpandagl = .{
+            .path = "../pandagl",
+        },
+        .libuicusor = .{
+            .path = "../ui-cursor",
+        },
+        .libcss = .{
+            .path = "../css",
+        },
+    },
+    .paths = .{
+        "",
+    },
+}

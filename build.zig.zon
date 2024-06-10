@@ -1,0 +1,57 @@
+.{
+    .name = "LCUI",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .libcss = .{
+            .path = "./lib/css",
+        },
+        // .libctest = .{
+        //     .path = "./lib/ctest",
+        // },
+        .libyutil = .{
+            .path = "./lib/yutil",
+        },
+        .libworker = .{
+            .path = "./lib/worker",
+        },
+
+        .libuixml = .{
+            .path = "./lib/ui-xml",
+        },
+        .libuicursor = .{
+            .path = "./lib/ui-cursor",
+        },
+        // ui
+        .libui = .{
+            .path = "./lib/ui",
+        },
+        // timer
+        .libtimer = .{
+            .path = "./lib/timer",
+        },
+        // thread
+        .libthread = .{
+            .path = "./lib/thread",
+        },
+        .libpandagl = .{
+            .path = "./lib/pandagl",
+        },
+        .libplatform = .{
+            .path = "./lib/platform",
+        },
+        .libuiserver = .{
+            .path = "./lib/ui-server",
+        },
+        .libuiwidgets = .{
+            .path = "./lib/ui-widgets",
+        },
+        .libuirouter = .{
+            .path = "./lib/ui-router",
+        },
+    },
+
+    .paths = .{
+        "",
+    },
+}

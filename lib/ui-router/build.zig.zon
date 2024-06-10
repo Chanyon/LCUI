@@ -1,0 +1,25 @@
+.{
+    .name = "ui-router",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .libyutil = .{
+            .path = "../yutil",
+        },
+        .libui = .{
+            .path = "../ui",
+        },
+        .libpandagl = .{
+            .path = "../pandagl",
+        },
+        .libuiwidgets = .{
+            .path = "../ui-widgets",
+        },
+        .libcss = .{
+            .path = "../css",
+        },
+    },
+    .paths = .{
+        "",
+    },
+}
