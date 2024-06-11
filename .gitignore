@@ -73,3 +73,7 @@ lcpkg/*
 !lcpkg/ports
 vsxmake*
 compile_commands.json
+
+# zig
+.zig-cahce
+zig-out/
