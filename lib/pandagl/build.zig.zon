@@ -8,7 +8,7 @@
             .hash = "1220d0134e1e0887e4697322ea31bbf84fc4583917ac048b49c6ebf8505e2c916a91",
         },
         .libyutil = .{
-            .path = "../yutil",
+            .path = "../yutil_fork",
         },
         .libjpeg = .{
             .url = "https://github.com/libjpeg-turbo/libjpeg-turbo/archive/3c17063ef1ab43f5877f19d670dc39497c5cd036.tar.gz",

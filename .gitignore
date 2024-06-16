@@ -75,5 +75,5 @@ vsxmake*
 compile_commands.json
 
 # zig
-.zig-cahce
+.zig-cache
 zig-out/

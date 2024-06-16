@@ -10,7 +10,7 @@
         //     .path = "./lib/ctest",
         // },
         .libyutil = .{
-            .path = "./lib/yutil",
+            .path = "./lib/yutil_fork",
         },
         .libworker = .{
             .path = "./lib/worker",

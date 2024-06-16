@@ -4,7 +4,7 @@
     .minimum_zig_version = "0.13.0",
     .dependencies = .{
         .libyutil = .{
-            .path = "../yutil",
+            .path = "../yutil_fork",
         },
     },
     .paths = .{""},

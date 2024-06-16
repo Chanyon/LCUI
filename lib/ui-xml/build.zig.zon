@@ -11,7 +11,7 @@
             .path = "../pandagl",
         },
         .libyutil = .{
-            .path = "../yutil",
+            .path = "../yutil_fork",
         },
         .libcss = .{
             .path = "../css",

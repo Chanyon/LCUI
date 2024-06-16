@@ -1,0 +1,7 @@
+.vscode
+.xmake
+build
+
+# zig
+.zig-cache
+zig-out/
