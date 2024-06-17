@@ -87,6 +87,20 @@ pub fn build(b: *std.Build) void {
     const libyutil = b.dependency("libyutil", .{});
     lib.linkLibrary(libyutil.artifact("yutil"));
 
+    const config_h = b.addConfigHeader(.{
+        .style = .blank,
+        .include_path = "config.h",
+    }, .{
+        .LIBUI_XML_VERSION = "3.0",
+        .LIBUI_XML_VERSION_MAJOR = 1,
+        .LIBUI_XML_VERSION_MINOR = 0,
+        .LIBUI_XML_VERSION_ALTER = 1,
+        .LIBCSS_STATIC_BUILD = {},
+        .LIBPLAT_HAS_X11 = {},
+    });
+
+    lib.addConfigHeader(config_h);
+
     lib.linkLibC();
 
     // This declares intent for the library to be installed into the standard

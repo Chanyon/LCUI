@@ -40,6 +40,19 @@ pub fn build(b: *std.Build) void {
     const libthread = b.dependency("libthread", .{});
     lib.linkLibrary(libthread.artifact("thread"));
 
+    const config_h = b.addConfigHeader(.{
+        .style = .blank,
+        .include_path = "config.h",
+    }, .{
+        .LIBWORKER_VERSION = "3.0",
+        .LIBWORKER_VERSION_MAJOR = 1,
+        .LIBWORKER_VERSION_MINOR = 0,
+        .LIBWORKER_VERSION_ALTER = 1,
+        .LIBWORKER_STATIC_BUILD = {},
+    });
+
+    lib.addConfigHeader(config_h);
+
     lib.linkLibC();
 
     // This declares intent for the library to be installed into the standard

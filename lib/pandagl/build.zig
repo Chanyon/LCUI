@@ -59,6 +59,7 @@ pub fn build(b: *std.Build) void {
     });
 
     const libjpeg = b.dependency("libjpeg", .{});
+    lib.addIncludePath(libjpeg.path(""));
 
     lib.addCSourceFiles(.{
         .root = libjpeg.path(""),
@@ -156,8 +157,6 @@ pub fn build(b: *std.Build) void {
         },
     });
 
-    lib.addIncludePath(b.path("jpeg/include/"));
-
     const libyutil = b.dependency("libyutil", .{});
     lib.linkLibrary(libyutil.artifact("yutil"));
 
@@ -171,6 +170,13 @@ pub fn build(b: *std.Build) void {
     lib.installHeadersDirectory(b.path("src/font/"), "font/", .{});
     lib.installHeadersDirectory(b.path("src/image/"), "image/", .{});
     // lib.installHeadersDirectory(b.path("jpeg/include/"), "jpeg/", .{});
+
+    const config_h = b.addConfigHeader(.{
+        .style = .blank,
+        .include_path = "jconfig.h",
+    }, .{});
+
+    lib.addConfigHeader(config_h);
     lib.linkLibC();
 
     // This declares intent for the library to be installed into the standard

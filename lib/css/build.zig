@@ -104,6 +104,19 @@ pub fn build(b: *std.Build) void {
     lib.installHeader(b.path("src/properties.h"), "properties.h");
     lib.installHeader(b.path("src/dump.h"), "dump.h");
 
+    const config_h = b.addConfigHeader(.{
+        .style = .blank,
+        .include_path = "config.h",
+    }, .{
+        .LIBUI_XML_VERSION = "3.0",
+        .LIBUI_XML_VERSION_MAJOR = 1,
+        .LIBUI_XML_VERSION_MINOR = 0,
+        .LIBUI_XML_VERSION_ALTER = 1,
+        .LIBCSS_STATIC_BUILD = {},
+    });
+
+    lib.addConfigHeader(config_h);
+
     // This declares intent for the library to be installed into the standard
     // location when the user invokes the "install" step (the default step when
     // running `zig build`).

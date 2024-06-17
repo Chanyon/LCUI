@@ -52,17 +52,20 @@ pub fn build(b: *std.Build) void {
     const libuicusor = b.dependency("libuicusor", .{});
     lib.linkLibrary(libuicusor.artifact("ui-cursor"));
 
-    // lib.addIncludePath(.{ .cwd_relative = "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/include" });
-    // inline for (.{
-    //     yutil,
-    //     libcss,
-    //     libpandagl,
-    //     libplatform,
-    //     libui,
-    //     libuicusor,
-    // }) |l| {
-    //     lib.addLibraryPath(l.path("zig-out/lib/"));
-    // }
+    const config_h = b.addConfigHeader(.{
+        .style = .blank,
+        .include_path = "config.h",
+    }, .{
+        .LIBUI_SERVER_VERSION = "3.0",
+        .LIBUI_SERVER_VERSION_MAJOR = 1,
+        .LIBUI_SERVER_VERSION_MINOR = 0,
+        .LIBUI_SERVER_VERSION_ALTER = 1,
+        .LIBUI_SERVER_STATIC_BUILD = {},
+        .LIBUI_SERVER_HAS_OPENMP = {},
+    });
+
+    lib.addConfigHeader(config_h);
+
     lib.linkLibC();
 
     // This declares intent for the library to be installed into the standard

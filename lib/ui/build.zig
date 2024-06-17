@@ -77,9 +77,20 @@ pub fn build(b: *std.Build) void {
     const libpandagl = b.dependency("libpandagl", .{});
     lib.linkLibrary(libpandagl.artifact("pandagl"));
 
-    // inline for (.{ libyutil, libcss, libth, libpandagl }) |l| {
-    //     lib.addLibraryPath(l.path("zig-out/lib/"));
-    // }
+    const config_h = b.addConfigHeader(.{
+        .style = .blank,
+        .include_path = "config.h",
+    }, .{
+        .LIBUI_XML_VERSION = "3.0",
+        .LIBUI_XML_VERSION_MAJOR = 1,
+        .LIBUI_XML_VERSION_MINOR = 0,
+        .LIBUI_XML_VERSION_ALTER = 1,
+        .LIBCSS_STATIC_BUILD = {},
+    });
+
+    lib.addConfigHeader(config_h);
+
+    lib.linkLibC();
 
     lib.installHeadersDirectory(b.path("include/"), "", .{});
     lib.installHeadersDirectory(b.path("src/"), "", .{ .include_extensions = &.{"h"} });

@@ -49,9 +49,18 @@ pub fn build(b: *std.Build) void {
     const libplatform = b.dependency("libplatform", .{});
     lib.linkLibrary(libplatform.artifact("platform"));
 
-    // inline for (.{ libpandagl, ui }) |l| {
-    //     lib.addLibraryPath(l.path("zig-out/lib/"));
-    // }
+    const config_h = b.addConfigHeader(.{
+        .style = .blank,
+        .include_path = "config.h",
+    }, .{
+        .LIBUI_XML_VERSION = "3.0",
+        .LIBUI_XML_VERSION_MAJOR = 1,
+        .LIBUI_XML_VERSION_MINOR = 0,
+        .LIBUI_XML_VERSION_ALTER = 1,
+        .LIBCSS_STATIC_BUILD = {},
+    });
+
+    lib.addConfigHeader(config_h);
 
     lib.linkLibC();
 

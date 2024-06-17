@@ -48,6 +48,20 @@ pub fn build(b: *std.Build) void {
     const libpandagl = b.dependency("libpandagl", .{});
     lib.linkLibrary(libpandagl.artifact("pandagl"));
 
+    const config_h = b.addConfigHeader(.{
+        .style = .blank,
+        .include_path = "config.h",
+    }, .{
+        .LIBUI_XML_VERSION = "3.0",
+        .LIBUI_XML_VERSION_MAJOR = 1,
+        .LIBUI_XML_VERSION_MINOR = 0,
+        .LIBUI_XML_VERSION_ALTER = 1,
+        .LIBUI_XML_STATIC_BUILD = {},
+        .LIBUI_XML_HAS_LIBXML2 = {},
+    });
+
+    lib.addConfigHeader(config_h);
+
     lib.linkLibC();
     lib.installHeadersDirectory(b.path("include/"), "", .{});
     // This declares intent for the library to be installed into the standard
