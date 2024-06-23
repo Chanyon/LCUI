@@ -9,7 +9,8 @@
  * LICENSE.TXT file in the root directory of this source tree.
  */
 
-#include <LCUI.h>
+// erron import include file.????
+// #include <LCUI.h>
 #include <thread.h>
 #include <ui/base.h>
 #include "ui_widget_id.h"

@@ -10,6 +10,7 @@
  */
 
 #include "../app.h"
+#include <errno.h>
 
 #ifdef LIBPLAT_WIN_DESKTOP
 #pragma comment(lib, "User32")
@@ -674,8 +675,9 @@ int app_init_engine(const wchar_t *name)
 
 		err = GetLastError();
 		format_error_message(err, msg, 256);
-		swprintf(str, 255, __FUNCTIONW__ L": error %d: %ls\n", err,
-			 msg);
+        //FIXME:
+		// swprintf(str, 255, __FUNCTIONW__ L": error %d: %ls\n", err,
+		// 	 msg);
 		logger_error("[win32-app] %ls\n", str);
 		MessageBoxW(NULL, str, win32_app.class_name, MB_ICONERROR);
 		return -1;
@@ -713,8 +715,9 @@ int app_destroy_engine(void)
 
 		err = GetLastError();
 		format_error_message(err, msg, 256);
-		swprintf(str, 255, __FUNCTIONW__ L": error %d: %ls\n", err,
-			 msg);
+        //FIXME:
+		// swprintf(str, 255, __FUNCTIONW__ L": error %d: %ls\n", err,
+		// 	 msg);
 		logger_error("[win32-app] %ls\n", str);
 	}
 	return 0;

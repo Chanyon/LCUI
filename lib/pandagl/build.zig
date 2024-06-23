@@ -24,6 +24,26 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
+    const config_h = b.addConfigHeader(.{
+        .style = .blank,
+        .include_path = "config.h",
+    }, .{
+        .PANDAGL_VERSION = "3.0.0", //先随便写
+        .PANDAGL_VERSION_MAJOR = "1", //先随便写
+        .PANDAGL_VERSION_MINOR = "0", //先随便写
+        .PANDAGL_VERSION_ALTER = "1", //先随便写
+        .PANDAGL_STATIC_BUILD = {},
+        .PANDAGL_HAS_TEXT = 1,
+        .PANDAGL_HAS_FONT = 1,
+        .PANDAGL_HAS_FREETYPE = null,
+        .PANDAGL_HAS_FONTCONFIG = null,
+        .PANDAGL_HAS_IMAGE = 1,
+        .PANDAGL_HAS_LIBPNG = 1,
+        .PANDAGL_HAS_LIBJPEG = null,
+    });
+
+    lib.addConfigHeader(config_h);
+
     lib.addIncludePath(b.path("include/"));
     lib.addIncludePath(b.path("src/font/"));
     lib.addIncludePath(b.path("src/image/"));
@@ -58,104 +78,114 @@ pub fn build(b: *std.Build) void {
         .flags = &.{},
     });
 
-    const libjpeg = b.dependency("libjpeg", .{});
-    lib.addIncludePath(libjpeg.path(""));
+    //FIXME: How to use zig build addConfigHeader?
+    // const libjpeg = b.dependency("libjpeg", .{});
+    // lib.addIncludePath(libjpeg.path(""));
 
-    lib.addCSourceFiles(.{
-        .root = libjpeg.path(""),
-        .files = &.{
-            "cdjpeg.c",
-            "cjpeg.c",
-            "djpeg.c",
-            "jaricom.c",
-            "jcapimin.c",
-            "jcapistd.c",
-            "jcarith.c",
-            "jccoefct.c",
-            // "jccolext.c",
-            "jccolor.c",
-            "jcdctmgr.c",
-            "jcdiffct.c",
-            "jchuff.c",
-            "jcicc.c",
-            "jcinit.c",
-            "jclhuff.c",
-            "jclossls.c",
-            "jcmainct.c",
-            "jcmarker.c",
-            "jcmaster.c",
-            "jcomapi.c",
-            "jcparam.c",
-            "jcphuff.c",
-            "jcprepct.c",
-            // "jcsample.c",
-            "jctrans.c",
-            "jdicc.c",
-            "jdapimin.c",
-            "jdapistd.c",
-            "jdarith.c",
-            "jdatadst-tj.c",
-            "jdatadst.c",
-            "jdatasrc-tj.c",
-            "jdatasrc.c",
-            // "jdcol565.c",
-            // "jdcolext.c",
-            "jdcolor.c",
-            "jddctmgr.c",
-            "jddiffct.c",
-            "jdhuff.c",
-            "jdicc.c",
-            "jdinput.c",
-            "jdlhuff.c",
-            "jdlossls.c",
-            "jdmainct.c",
-            "jdmarker.c",
-            "jdmaster.c",
-            "jdmerge.c",
-            // "jdmrg565.c",
-            // "jdmrgext.c",
-            "jdphuff.c",
-            "jdpostct.c",
-            // "jdsample.c",
-            "jdtrans.c",
-            "jerror.c",
-            "jfdctflt.c",
-            "jfdctfst.c",
-            "jfdctint.c",
-            "jidctflt.c",
-            "jidctfst.c",
-            "jidctint.c",
-            "jidctred.c",
-            "jmemmgr.c",
-            "jmemnobs.c",
-            "jpeg_nbits.c",
-            "jpegtran.c",
-            "jquant1.c",
-            "jquant2.c",
-            // "jstdhuff.c",
-            "jutils.c",
-            "rdbmp.c",
-            "rdcolmap.c",
-            "rdgif.c",
-            "rdjpgcom.c",
-            "rdppm.c",
-            "rdswitch.c",
-            "rdtarga.c",
-            "strtest.c",
-            "tjbench.c",
-            // "tjexample.c",
-            // "tjunittest.c",
-            "tjutil.c",
-            // "turbojpeg-jni.c",
-            // "turbojpeg-mp.c",
-            "turbojpeg.c",
-            "wrbmp.c",
-            "wrgif.c",
-            "wrjpgcom.c",
-            "wrppm.c",
-            "wrtarga.c",
-        },
-    });
+    // const jconfig_h = b.addConfigHeader(.{
+    //     .style = .{ .autoconf = libjpeg.path("jconfig.h.in") },
+    //     .include_path = "jconfig.h",
+    // }, .{
+    //     .RIGHT_SHIFT_IS_UNSIGNED = null,
+    // });
+
+    // lib.addConfigHeader(jconfig_h);
+
+    // lib.addCSourceFiles(.{
+    //     .root = libjpeg.path(""),
+    //     .files = &.{
+    //         "cdjpeg.c",
+    //         "cjpeg.c",
+    //         "djpeg.c",
+    //         "jaricom.c",
+    //         "jcapimin.c",
+    //         "jcapistd.c",
+    //         "jcarith.c",
+    //         "jccoefct.c",
+    //         "jccolext.c",
+    //         "jccolor.c",
+    //         "jcdctmgr.c",
+    //         "jcdiffct.c",
+    //         "jchuff.c",
+    //         "jcicc.c",
+    //         "jcinit.c",
+    //         "jclhuff.c",
+    //         "jclossls.c",
+    //         "jcmainct.c",
+    //         "jcmarker.c",
+    //         "jcmaster.c",
+    //         "jcomapi.c",
+    //         "jcparam.c",
+    //         "jcphuff.c",
+    //         "jcprepct.c",
+    //         // "jcsample.c",
+    //         "jctrans.c",
+    //         "jdicc.c",
+    //         "jdapimin.c",
+    //         "jdapistd.c",
+    //         "jdarith.c",
+    //         "jdatadst-tj.c",
+    //         "jdatadst.c",
+    //         "jdatasrc-tj.c",
+    //         "jdatasrc.c",
+    //         "jdcol565.c",
+    //         "jdcolext.c",
+    //         "jdcolor.c",
+    //         "jddctmgr.c",
+    //         "jddiffct.c",
+    //         "jdhuff.c",
+    //         "jdicc.c",
+    //         "jdinput.c",
+    //         "jdlhuff.c",
+    //         "jdlossls.c",
+    //         "jdmainct.c",
+    //         "jdmarker.c",
+    //         "jdmaster.c",
+    //         "jdmerge.c",
+    //         "jdmrg565.c",
+    //         "jdmrgext.c",
+    //         "jdphuff.c",
+    //         "jdpostct.c",
+    //         // "jdsample.c",
+    //         "jdtrans.c",
+    //         "jerror.c",
+    //         "jfdctflt.c",
+    //         "jfdctfst.c",
+    //         "jfdctint.c",
+    //         "jidctflt.c",
+    //         "jidctfst.c",
+    //         "jidctint.c",
+    //         "jidctred.c",
+    //         "jmemmgr.c",
+    //         "jmemnobs.c",
+    //         "jpeg_nbits.c",
+    //         "jpegtran.c",
+    //         "jquant1.c",
+    //         "jquant2.c",
+    //         "jstdhuff.c",
+    //         "jutils.c",
+    //         "rdbmp.c",
+    //         "rdcolmap.c",
+    //         "rdgif.c",
+    //         "rdjpgcom.c",
+    //         "rdppm.c",
+    //         "rdswitch.c",
+    //         "rdtarga.c",
+    //         "strtest.c",
+    //         "tjbench.c",
+    //         // "tjexample.c",
+    //         // "tjunittest.c",
+    //         "tjutil.c",
+    //         // "turbojpeg-jni.c",
+    //         // "turbojpeg-mp.c",
+    //         "turbojpeg.c",
+    //         "wrbmp.c",
+    //         "wrgif.c",
+    //         "wrjpgcom.c",
+    //         "wrppm.c",
+    //         "wrtarga.c",
+    //     },
+    // });
 
     const libyutil = b.dependency("libyutil", .{});
     lib.linkLibrary(libyutil.artifact("yutil"));
@@ -163,20 +193,11 @@ pub fn build(b: *std.Build) void {
     const libpng = b.dependency("libpng", .{ .target = target, .optimize = optimize });
     lib.linkLibrary(libpng.artifact("png"));
 
-    //jpeg
-
     lib.installHeadersDirectory(b.path("include/"), "", .{});
-    lib.installHeadersDirectory(libjpeg.path(""), "jpeg", .{ .include_extensions = &.{".h"} });
+    // lib.installHeadersDirectory(libjpeg.path(""), "jpeg/", .{ .include_extensions = &.{".h"} });
     lib.installHeadersDirectory(b.path("src/font/"), "font/", .{});
     lib.installHeadersDirectory(b.path("src/image/"), "image/", .{});
-    // lib.installHeadersDirectory(b.path("jpeg/include/"), "jpeg/", .{});
 
-    const config_h = b.addConfigHeader(.{
-        .style = .blank,
-        .include_path = "jconfig.h",
-    }, .{});
-
-    lib.addConfigHeader(config_h);
     lib.linkLibC();
 
     // This declares intent for the library to be installed into the standard
