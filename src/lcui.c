@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
-#include <LCUI/config.h>
+#include <config.h>
 #include <LCUI/app.h>
 #include <platform.h>
 #include <ui.h>

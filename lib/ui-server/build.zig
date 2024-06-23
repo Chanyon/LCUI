@@ -61,7 +61,7 @@ pub fn build(b: *std.Build) void {
         .LIBUI_SERVER_VERSION_MINOR = 0,
         .LIBUI_SERVER_VERSION_ALTER = 1,
         .LIBUI_SERVER_STATIC_BUILD = {},
-        .LIBUI_SERVER_HAS_OPENMP = {},
+        .LIBUI_SERVER_HAS_OPENMP = null,
     });
 
     lib.addConfigHeader(config_h);

@@ -15,12 +15,21 @@ pub fn build(b: *std.Build) void {
         .files = &.{
             "src/main.c",
         },
-        .flags = &.{},
+        .flags = &.{"-Wno-error=expansion-to-defined"},
     });
-
+    exe.addIncludePath(b.path("include/"));
     const liblcui = b.dependency("liblcui", .{});
     exe.linkLibrary(liblcui.artifact("lcui"));
 
+    const config_h = b.addConfigHeader(.{
+        .style = .blank,
+        .include_path = "config.h",
+    }, .{
+        .PACKAGE_VERSION = "3.0.0",
+        .LCUI_STATIC_BUILD = {},
+    });
+
+    exe.addConfigHeader(config_h);
     exe.linkLibC();
     b.installArtifact(exe);
 

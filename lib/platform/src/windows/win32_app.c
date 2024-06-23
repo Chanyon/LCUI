@@ -80,7 +80,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID unused)
 static DWORD format_error_message(DWORD err, wchar_t *buf, int len)
 {
 	return FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, err,
-			     LANG_NEUTRAL, buf, len, NULL);
+			     LANG_NEUTRAL, (char *)buf, len, NULL);
 }
 
 static int app_process_native_event(void)

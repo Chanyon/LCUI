@@ -55,13 +55,13 @@ static void win32ime_set_caret(int x, int y)
 
 static bool win32ime_open(void)
 {
-	app_on_native_event(WM_CHAR, win32ime_on_char, NULL);
+	app_on_native_event(WM_CHAR, (void *)win32ime_on_char, NULL);
 	return true;
 }
 
 static bool win32ime_close(void)
 {
-	app_off_native_event(WM_CHAR, win32ime_on_char);
+	app_off_native_event(WM_CHAR, (void *)win32ime_on_char);
 	return true;
 }
 

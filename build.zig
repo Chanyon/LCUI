@@ -24,18 +24,6 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    lib.addIncludePath(b.path("./include/"));
-    lib.installHeadersDirectory(b.path("./include/"), "", .{});
-
-    lib.addCSourceFiles(.{
-        .files = &.{
-            "src/lcui.c",
-            "src/lcui_settings.c",
-            "src/lcui_ui.c",
-        },
-        .flags = &.{},
-    });
-
     const libyutil = b.dependency("libyutil", .{});
     lib.linkLibrary(libyutil.artifact("yutil"));
 
@@ -82,21 +70,31 @@ pub fn build(b: *std.Build) void {
     const libuirouter = b.dependency("libuirouter", .{});
     lib.linkLibrary(libuirouter.artifact("ui-router"));
 
+    const config_h = b.addConfigHeader(.{
+        .style = .blank,
+        .include_path = "config.h",
+    }, .{
+        .PACKAGE_VERSION = "3.0.0",
+        .LCUI_STATIC_BUILD = {},
+    });
+
+    lib.addConfigHeader(config_h);
+
+    lib.addIncludePath(b.path("./include/"));
+    lib.installHeadersDirectory(b.path("./include/"), "", .{});
+
+    lib.addCSourceFiles(.{
+        .files = &.{
+            "src/lcui.c",
+            "src/lcui_settings.c",
+            "src/lcui_ui.c",
+        },
+        .flags = &.{},
+    });
+
     lib.linkLibC();
     // This declares intent for the library to be installed into the standard
     // location when the user invokes the "install" step (the default step when
     // running `zig build`).
     b.installArtifact(lib);
-
-    const exe = b.addExecutable(.{
-        .name = "la",
-        .root_source_file = b.path("main.zig"),
-        .target = target,
-        .optimize = optimize,
-    });
-
-    exe.linkLibrary(lib);
-    exe.addIncludePath(b.path("zig-out/include/"));
-
-    b.installArtifact(exe);
 }
